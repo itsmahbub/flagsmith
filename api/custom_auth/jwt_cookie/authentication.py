@@ -18,6 +18,8 @@ class JWTCookieAuthentication(JWTAuthentication):
     def authenticate(self, request: Request) -> tuple[FFAdminUser, Token] | None:
         if raw_token := request.COOKIES.get(JWT_SLIDING_COOKIE_KEY):
             try:
+                print(raw_token)
+                print(type(request.auth))
                 validated_token = self.get_validated_token(raw_token)  # type: ignore[arg-type]
                 return self.get_user(validated_token), validated_token  # type: ignore[return-value]
             except (InvalidToken, TokenError, AuthenticationFailed):

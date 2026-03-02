@@ -356,6 +356,7 @@ const controller = {
       if (!data.token) {
         return
       }
+      data.post(`${Project.api}auth/logout/`, {})
       ;(Project.cookieAuthEnabled
         ? data.post(`${Project.api}auth/logout/`, {})
         : Promise.resolve()
